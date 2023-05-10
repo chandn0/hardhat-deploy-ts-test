@@ -7,13 +7,14 @@ let mnemonic = process.env.MNEMONIC;
 if (!mnemonic) {
   // FOR DEV ONLY, SET IT IN .env files if you want to keep it private
   // (IT IS IMPORTANT TO HAVE A NON RANDOM MNEMONIC SO THAT SCRIPTS CAN ACT ON THE SAME ACCOUNTS)
-  mnemonic = 'test test test test test test test test test test test junk';
+  mnemonic = 'grunt jewel gaze gaze village air remind liquid increase endless slender output';
 }
 const accounts = {
   mnemonic,
 };
 
 const config: HardhatUserConfig = {
+  defaultNetwork: 'buildbear',
   solidity: {
     version: '0.6.5',
   },
@@ -23,6 +24,10 @@ const config: HardhatUserConfig = {
     admin: '0x5B9d721f482E60efA99e555Cb59c7DBF4Df15Dc7',
   },
   networks: {
+   
+    buildbear: {
+      url: "https://rpc.demo.buildbear.io/buildbear",
+    },
     coverage: {
       url: 'http://localhost:5458',
       accounts,
@@ -34,18 +39,7 @@ const config: HardhatUserConfig = {
       url: 'http://localhost:8545',
       accounts,
     },
-    rinkeby: {
-      url: 'https://rinkeby.infura.io/v3/' + process.env.INFURA_TOKEN,
-      accounts,
-    },
-    42: {
-      url: 'https://kovan.infura.io/v3/' + process.env.INFURA_TOKEN,
-      accounts,
-    },
-    staging: {
-      url: 'https://goerli.infura.io/v3/' + process.env.INFURA_TOKEN,
-      accounts,
-    },
+    
   },
   paths: {
     sources: 'src',
@@ -58,6 +52,9 @@ const config: HardhatUserConfig = {
     deployments: {
       rinkeby: ['node_modules/@cartesi/arbitration/deployments/rinkeby'],
     },
+  },
+  mocha: {
+    timeout: 20000000000,
   },
 };
 
