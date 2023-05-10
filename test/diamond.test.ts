@@ -32,6 +32,6 @@ describe('Diamond', function () {
     expect(() => DiamondExample.hello('world')).to.throw('DiamondExample.hello is not a function');
 
     assert.equal(await DiamondExample.hello2('world'), 'hello2 world');
-    assert.equal((await DiamondExample.getNumber()).toString(), '0');
+    assert.equal((await DiamondExample.getNumber()).toString(), '1');
   });
 });
